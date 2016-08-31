@@ -28,6 +28,22 @@ public class Company {
     @SerializedName("traffic")
     Traffic traffic;
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public List<SocialProfile> getSocialProfiles() {
+        return socialProfiles;
+    }
+
     @Parcel
     public static class Category {
 
@@ -56,11 +72,62 @@ public class Company {
         @SerializedName("keywords")
         List<String> keywords = new ArrayList<String>();
 
+        public long getApproxEmployees() {
+            return approxEmployees;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getFounded() {
+            return founded;
+        }
+
+        public List<Link> getLinks() {
+            return links;
+        }
+
+        public ContactInfo getContactInfo() {
+            return contactInfo;
+        }
+
         @Parcel
         public static class ContactInfo {
 
+            @SerializedName("emailAddresses")
+            public List<EmailAddress> emailAddresses = new ArrayList<EmailAddress>();
+            @SerializedName("phoneNumbers")
+            public List<PhoneNumber> phoneNumbers = new ArrayList<PhoneNumber>();
             @SerializedName("addresses")
-            List<Address> addresses = new ArrayList<Address>();
+            public List<Address> addresses = new ArrayList<Address>();
+
+            public List<EmailAddress> getEmailAddresses() {
+                return emailAddresses;
+            }
+
+            @Parcel
+            public static class EmailAddress {
+
+                @SerializedName("value")
+                public String value;
+                @SerializedName("label")
+                public String label;
+
+                public String getValue() {
+                    return value;
+                }
+            }
+
+            @Parcel
+            public static class PhoneNumber {
+
+                @SerializedName("number")
+                public String number;
+                @SerializedName("label")
+                public String label;
+
+            }
 
             @Parcel
             public static class Address {
@@ -96,6 +163,9 @@ public class Company {
             @SerializedName("label")
             String label;
 
+            public String getUrl() {
+                return url;
+            }
         }
 
         @Parcel
@@ -129,6 +199,14 @@ public class Company {
         String username;
         @SerializedName("id")
         String id;
+
+        public String getBio() {
+            return bio;
+        }
+
+        public String getTypeName() {
+            return typeName;
+        }
 
     }
 

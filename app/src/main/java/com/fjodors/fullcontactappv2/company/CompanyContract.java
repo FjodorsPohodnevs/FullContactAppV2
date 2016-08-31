@@ -1,6 +1,6 @@
-package com.fjodors.fullcontactappv2.companyDetail;
+package com.fjodors.fullcontactappv2.company;
 
-public interface CompanyDetailContract {
+public interface CompanyContract {
 
     interface View {
         void showCompanyDetail();

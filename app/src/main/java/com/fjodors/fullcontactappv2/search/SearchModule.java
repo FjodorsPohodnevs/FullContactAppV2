@@ -1,7 +1,7 @@
 package com.fjodors.fullcontactappv2.search;
 
 import com.fjodors.fullcontactappv2.ActivityScope;
-import com.fjodors.fullcontactappv2.api.FullContactManager;
+import com.fjodors.fullcontactappv2.api.CompanyManager;
 
 import dagger.Module;
 import dagger.Provides;
@@ -9,22 +9,22 @@ import dagger.Provides;
 @Module
 public class SearchModule {
 
-    private SearchContract.View searchView;
+    private SearchContract.View searchActivity;
 
-    public SearchModule(SearchContract.View searchView) {
-        this.searchView = searchView;
+    public SearchModule(SearchContract.View searchActivity) {
+        this.searchActivity = searchActivity;
     }
 
     @Provides
     @ActivityScope
-    SearchContract.View provideSearchView() {
-        return searchView;
+    SearchContract.View provideSearchActivity() {
+        return searchActivity;
     }
 
     @Provides
     @ActivityScope
-    SearchContract.Presenter searchPresenter(FullContactManager fullContactManager) {
-        return new SearchPresenter(searchView, fullContactManager);
+    SearchContract.Presenter searchPresenter(CompanyManager companyManager) {
+        return new SearchPresenter(searchActivity, companyManager);
     }
 
 }

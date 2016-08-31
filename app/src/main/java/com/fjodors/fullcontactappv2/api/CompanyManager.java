@@ -7,11 +7,11 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 
-public class FullContactManager {
+public class CompanyManager {
 
     private FullContactApiService fullContactApiService;
 
-    public FullContactManager(FullContactApiService fullContactApiService) {
+    public CompanyManager(FullContactApiService fullContactApiService) {
         this.fullContactApiService = fullContactApiService;
     }
 

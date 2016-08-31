@@ -1,6 +1,8 @@
 package com.fjodors.fullcontactappv2;
 
 import com.fjodors.fullcontactappv2.api.FullContactApiModule;
+import com.fjodors.fullcontactappv2.company.CompanyComponent;
+import com.fjodors.fullcontactappv2.company.CompanyModule;
 import com.fjodors.fullcontactappv2.search.SearchComponent;
 import com.fjodors.fullcontactappv2.search.SearchModule;
 
@@ -13,4 +15,6 @@ import dagger.Component;
 public interface FullContactAppComponent {
 
     SearchComponent plus(SearchModule searchModule);
+
+    CompanyComponent plus(CompanyModule companyModule);
 }

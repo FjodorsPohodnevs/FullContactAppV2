@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.fjodors.fullcontactappv2.FullContactApp;
 import com.fjodors.fullcontactappv2.R;
 import com.fjodors.fullcontactappv2.api.responses.Company;
-import com.fjodors.fullcontactappv2.companyDetail.CompanyDetailActivity;
+import com.fjodors.fullcontactappv2.company.CompanyActivity;
 
 import org.parceler.Parcels;
 
@@ -49,6 +49,24 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
     }
 
+//TODO: do this in presenter
+
+    /**
+     * https://github.com/ReactiveX/RxJava/wiki/The-RxJava-Android-Module
+     */
+//    // MyActivity
+//    private Subscription subscription;
+//
+//    protected void onCreate(Bundle savedInstanceState) {
+//        this.subscription = observable.subscribe(this);
+//    }
+//
+//    ...
+//
+//    protected void onDestroy() {
+//        this.subscription.unsubscribe();
+//        super.onDestroy();
+//    }
     @OnClick(R.id.searchBtn)
     public void fetchDomain() {
         searchPresenter.fetchCompanyData(companyDomainET.getText().toString());
@@ -71,7 +89,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
     @Override
     public void openCompanyDetail(Company company) {
-        Intent intent = new Intent(this, CompanyDetailActivity.class);
+        Intent intent = new Intent(this, CompanyActivity.class);
         intent.putExtra(COMPANY_KEY, Parcels.wrap(company));
         startActivity(intent);
     }

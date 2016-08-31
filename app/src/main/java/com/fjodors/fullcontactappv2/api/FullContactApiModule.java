@@ -94,8 +94,8 @@ public class FullContactApiModule {
 
     @Provides
     @Singleton
-    FullContactManager provideFullContactManager(FullContactApiService fullContactApiService) {
-        return new FullContactManager(fullContactApiService);
+    CompanyManager provideFullContactManager(FullContactApiService fullContactApiService) {
+        return new CompanyManager(fullContactApiService);
     }
 
 }

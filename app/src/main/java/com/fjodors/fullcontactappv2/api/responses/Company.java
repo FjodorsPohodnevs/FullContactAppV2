@@ -1,106 +1,86 @@
 package com.fjodors.fullcontactappv2.api.responses;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO: implement parcerlable
-public class Company implements Serializable {
+@Parcel
+public class Company {
     @SerializedName("status")
-    @Expose
-    public long status;
+    long status;
     @SerializedName("requestId")
-    @Expose
-    public String requestId;
+    String requestId;
     @SerializedName("category")
-    @Expose
-    public List<Category> category = new ArrayList<Category>();
+    List<Category> category = new ArrayList<Category>();
     @SerializedName("logo")
-    @Expose
-    public String logo;
+    String logo;
     @SerializedName("website")
-    @Expose
-    public String website;
+    String website;
     @SerializedName("languageLocale")
-    @Expose
-    public String languageLocale;
+    String languageLocale;
     @SerializedName("organization")
-    @Expose
-    public Organization organization;
+    Organization organization;
     @SerializedName("socialProfiles")
-    @Expose
-    public List<SocialProfile> socialProfiles = new ArrayList<SocialProfile>();
+    List<SocialProfile> socialProfiles = new ArrayList<SocialProfile>();
     @SerializedName("traffic")
-    @Expose
-    public Traffic traffic;
+    Traffic traffic;
 
+    @Parcel
     public static class Category {
 
         @SerializedName("name")
-        @Expose
-        public String name;
+        String name;
         @SerializedName("code")
-        @Expose
-        public String code;
+        String code;
 
     }
 
-    public class Organization {
+    @Parcel
+    public static class Organization {
 
         @SerializedName("name")
-        @Expose
-        public String name;
+        String name;
         @SerializedName("approxEmployees")
-        @Expose
-        public long approxEmployees;
+        long approxEmployees;
         @SerializedName("founded")
-        @Expose
-        public String founded;
+        String founded;
         @SerializedName("contactInfo")
-        @Expose
-        public ContactInfo contactInfo;
+        ContactInfo contactInfo;
         @SerializedName("links")
-        @Expose
-        public List<Link> links = new ArrayList<Link>();
+        List<Link> links = new ArrayList<Link>();
         @SerializedName("images")
-        @Expose
-        public List<Image> images = new ArrayList<Image>();
+        List<Image> images = new ArrayList<Image>();
         @SerializedName("keywords")
-        @Expose
-        public List<String> keywords = new ArrayList<String>();
+        List<String> keywords = new ArrayList<String>();
 
-        public class ContactInfo {
+        @Parcel
+        public static class ContactInfo {
 
             @SerializedName("addresses")
-            @Expose
-            public List<Address> addresses = new ArrayList<Address>();
+            List<Address> addresses = new ArrayList<Address>();
 
-            public class Address {
+            @Parcel
+            public static class Address {
 
                 @SerializedName("addressLine1")
-                @Expose
-                public String addressLine1;
+                String addressLine1;
                 @SerializedName("locality")
-                @Expose
-                public String locality;
+                String locality;
                 @SerializedName("country")
-                @Expose
-                public Country country;
+                Country country;
                 @SerializedName("label")
-                @Expose
-                public String label;
+                String label;
 
-                public class Country {
+                @Parcel
+                public static class Country {
 
                     @SerializedName("name")
-                    @Expose
-                    public String name;
+                    String name;
                     @SerializedName("code")
-                    @Expose
-                    public String code;
+                    String code;
 
                 }
 
@@ -108,87 +88,75 @@ public class Company implements Serializable {
 
         }
 
-        public class Link {
+        @Parcel
+        public static class Link {
 
             @SerializedName("url")
-            @Expose
-            public String url;
+            String url;
             @SerializedName("label")
-            @Expose
-            public String label;
+            String label;
 
         }
 
-        public class Image {
+        @Parcel
+        public static class Image {
 
             @SerializedName("url")
-            @Expose
-            public String url;
+            String url;
             @SerializedName("label")
-            @Expose
-            public String label;
+            String label;
 
         }
 
     }
 
-    public class SocialProfile {
+    @Parcel
+    public static class SocialProfile {
 
         @SerializedName("typeId")
-        @Expose
-        public String typeId;
+        String typeId;
         @SerializedName("typeName")
-        @Expose
-        public String typeName;
+        String typeName;
         @SerializedName("url")
-        @Expose
-        public String url;
+        String url;
         @SerializedName("bio")
-        @Expose
-        public String bio;
+        String bio;
         @SerializedName("followers")
-        @Expose
-        public long followers;
+        long followers;
         @SerializedName("following")
-        @Expose
-        public long following;
+        long following;
         @SerializedName("username")
-        @Expose
-        public String username;
+        String username;
         @SerializedName("id")
-        @Expose
-        public String id;
+        String id;
 
     }
 
-    public class Traffic {
+    @Parcel
+    public static class Traffic {
 
         @SerializedName("topCountryRanking")
-        @Expose
-        public List<TopCountryRanking> topCountryRanking = new ArrayList<TopCountryRanking>();
+        List<TopCountryRanking> topCountryRanking = new ArrayList<TopCountryRanking>();
         @SerializedName("ranking")
-        @Expose
-        public List<Ranking> ranking = new ArrayList<Ranking>();
+        List<Ranking> ranking = new ArrayList<Ranking>();
 
-        public class TopCountryRanking {
+        @Parcel
+        public static class TopCountryRanking {
 
             @SerializedName("rank")
-            @Expose
-            public long rank;
+            long rank;
             @SerializedName("locale")
-            @Expose
-            public String locale;
+            String locale;
 
         }
 
-        public class Ranking {
+        @Parcel
+        public static class Ranking {
 
             @SerializedName("rank")
-            @Expose
-            public long rank;
+            long rank;
             @SerializedName("locale")
-            @Expose
-            public String locale;
+            String locale;
 
         }
 

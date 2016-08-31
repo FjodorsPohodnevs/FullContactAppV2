@@ -14,6 +14,8 @@ import com.fjodors.fullcontactappv2.R;
 import com.fjodors.fullcontactappv2.api.responses.Company;
 import com.fjodors.fullcontactappv2.companyDetail.CompanyDetailActivity;
 
+import org.parceler.Parcels;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -70,7 +72,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void openCompanyDetail(Company company) {
         Intent intent = new Intent(this, CompanyDetailActivity.class);
-        intent.putExtra(COMPANY_KEY, company);
+        intent.putExtra(COMPANY_KEY, Parcels.wrap(company));
         startActivity(intent);
     }
 }

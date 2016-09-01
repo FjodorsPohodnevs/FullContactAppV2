@@ -5,8 +5,6 @@ import android.content.Context;
 
 
 public class FullContactApp extends Application {
-
-
     private FullContactAppComponent fullContactAppComponent;
 
     public static FullContactApp get(Context context) {

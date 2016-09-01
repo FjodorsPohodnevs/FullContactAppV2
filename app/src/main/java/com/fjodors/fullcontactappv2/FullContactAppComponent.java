@@ -13,7 +13,6 @@ import dagger.Component;
 @Singleton
 @Component(modules = {FullContactAppModule.class, FullContactApiModule.class})
 public interface FullContactAppComponent {
-
     SearchComponent plus(SearchModule searchModule);
 
     CompanyComponent plus(CompanyModule companyModule);

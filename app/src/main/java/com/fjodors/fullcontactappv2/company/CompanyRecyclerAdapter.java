@@ -18,16 +18,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CompanyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private static final int TYPE_COMPANY_HEADER = 0;
+    private static final int TYPE_COMPANY_URLS_EMAILS = 1;
+    private static final int TYPE_COMPANY_BIOS = 2;
 
-    private static final int TYPE_COMPANY_LOGO = 0;
-    private static final int TYPE_COMPANY_FOUNDED_EMPLOYEE = 1;
-    private static final int TYPE_COMPANY_URLS = 2;
-    private static final int TYPE_COMPANY_EMAILS = 3;
-    private static final int TYPE_COMPANY_BIOS = 4;
+    private static final int HEADER_SIZE = 1;
 
     private List<Object> companyData;
     private Context context;
-
 
     public CompanyRecyclerAdapter() {
     }
@@ -35,14 +33,11 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public int getItemViewType(int position) {
 
-        if (companyData.get(position) instanceof Company) {
-            return TYPE_COMPANY_LOGO;
-        } else if (companyData.get(position) instanceof Company.Organization) {
-            return TYPE_COMPANY_FOUNDED_EMPLOYEE;
-        } else if (companyData.get(position) instanceof Company.Organization.Link) {
-            return TYPE_COMPANY_URLS;
-        } else if (companyData.get(position) instanceof Company.Organization.ContactInfo.EmailAddress) {
-            return TYPE_COMPANY_EMAILS;
+        if (isPositionHeader(position)) {
+            return TYPE_COMPANY_HEADER;
+        } else if (companyData.get(position) instanceof Company.Organization.Link
+                || companyData.get(position) instanceof Company.Organization.ContactInfo.EmailAddress) {
+            return TYPE_COMPANY_URLS_EMAILS;
         } else if (companyData.get(position) instanceof Company.SocialProfile) {
             return TYPE_COMPANY_BIOS;
         }
@@ -58,21 +53,13 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         switch (viewType) {
-            case TYPE_COMPANY_LOGO:
-                View viewCompanyLogo = inflater.inflate(R.layout.item_company_logo_website, parent, false);
-                viewHolder = new ViewHolderLogo(viewCompanyLogo);
+            case TYPE_COMPANY_HEADER:
+                View viewCompanyLogo = inflater.inflate(R.layout.item_company_header, parent, false);
+                viewHolder = new ViewHolderHeader(viewCompanyLogo);
                 break;
-            case TYPE_COMPANY_FOUNDED_EMPLOYEE:
-                View viewCompanyFoundedEmployee = inflater.inflate(R.layout.item_company_founded_emloyee, parent, false);
-                viewHolder = new ViewHolderFoundedEmployee(viewCompanyFoundedEmployee);
-                break;
-            case TYPE_COMPANY_URLS:
-                View viewCompanyUrl = inflater.inflate(R.layout.item_company_url, parent, false);
-                viewHolder = new ViewHolderUrls(viewCompanyUrl);
-                break;
-            case TYPE_COMPANY_EMAILS:
-                View viewCompanyEmail = inflater.inflate(R.layout.item_company_email, parent, false);
-                viewHolder = new ViewHolderEmails(viewCompanyEmail);
+            case TYPE_COMPANY_URLS_EMAILS:
+                View viewCompanyUrl = inflater.inflate(R.layout.item_company_url_email, parent, false);
+                viewHolder = new ViewHolderUrlsEmails(viewCompanyUrl);
                 break;
             case TYPE_COMPANY_BIOS:
                 View viewCompanyBio = inflater.inflate(R.layout.item_company_social_bio, parent, false);
@@ -87,25 +74,22 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         switch (holder.getItemViewType()) {
-            case TYPE_COMPANY_LOGO:
-                ViewHolderLogo viewHolderLogo = (ViewHolderLogo) holder;
+            case TYPE_COMPANY_HEADER:
+                ViewHolderHeader viewHolderHeader = (ViewHolderHeader) holder;
                 Picasso.with(context)
-                        .load(((Company) companyData.get(position)).getLogo())
-                        .into(viewHolderLogo.companyLogo);
+                        .load(((CompanyDetailHeader) companyData.get(position)).getLogo())
+                        .into(viewHolderHeader.companyLogo);
+                viewHolderHeader.companyName.setText(((CompanyDetailHeader) companyData.get(position)).getName());
+                viewHolderHeader.companyFoundedYear.setText(((CompanyDetailHeader) companyData.get(position)).getName());
+                viewHolderHeader.companyEmployeeCount.setText(String.valueOf(((CompanyDetailHeader) companyData.get(position)).getApproxEmployees()));
                 break;
-            case TYPE_COMPANY_FOUNDED_EMPLOYEE:
-                ViewHolderFoundedEmployee viewHolderFoundedEmployee = (ViewHolderFoundedEmployee) holder;
-                viewHolderFoundedEmployee.companyName.setText(((Company.Organization) companyData.get(position)).getName());
-                viewHolderFoundedEmployee.companyFoundedYear.setText(((Company.Organization) companyData.get(position)).getName());
-                viewHolderFoundedEmployee.companyEmployeeCount.setText(String.valueOf(((Company.Organization) companyData.get(position)).getApproxEmployees()));
-                break;
-            case TYPE_COMPANY_URLS:
-                ViewHolderUrls viewHolderUrls = (ViewHolderUrls) holder;
-                viewHolderUrls.url.setText(((Company.Organization.Link) companyData.get(position)).getUrl());
-                break;
-            case TYPE_COMPANY_EMAILS:
-                ViewHolderEmails viewHolderEmails = (ViewHolderEmails) holder;
-                viewHolderEmails.email.setText(((Company.Organization.ContactInfo.EmailAddress) companyData.get(position)).getValue());
+            case TYPE_COMPANY_URLS_EMAILS:
+                ViewHolderUrlsEmails viewHolderUrlsEmails = (ViewHolderUrlsEmails) holder;
+                if (companyData.get(position) instanceof Company.Organization.Link) {
+                    viewHolderUrlsEmails.urlEmail.setText(((Company.Organization.Link) companyData.get(position)).getUrl());
+                } else {
+                    viewHolderUrlsEmails.urlEmail.setText(((Company.Organization.ContactInfo.EmailAddress) companyData.get(position)).getValue());
+                }
                 break;
             case TYPE_COMPANY_BIOS:
                 ViewHolderBio viewHolderBio = (ViewHolderBio) holder;
@@ -124,19 +108,14 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         this.companyData = companyData;
     }
 
-    public class ViewHolderLogo extends RecyclerView.ViewHolder {
+    private boolean isPositionHeader(int position) {
+        return position == 0;
+    }
+
+    public class ViewHolderHeader extends RecyclerView.ViewHolder {
 
         @BindView(R.id.companyLogo)
         ImageView companyLogo;
-
-        public ViewHolderLogo(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-        }
-    }
-
-    public class ViewHolderFoundedEmployee extends RecyclerView.ViewHolder {
-
         @BindView(R.id.companyName)
         TextView companyName;
         @BindView(R.id.companyFounded)
@@ -144,31 +123,19 @@ public class CompanyRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         @BindView(R.id.companyEmployees)
         TextView companyEmployeeCount;
 
-
-        public ViewHolderFoundedEmployee(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-        }
-    }
-
-    public class ViewHolderUrls extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.url)
-        TextView url;
-
-        public ViewHolderUrls(View view) {
+        public ViewHolderHeader(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
     }
 
 
-    public class ViewHolderEmails extends RecyclerView.ViewHolder {
+    public class ViewHolderUrlsEmails extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.email)
-        TextView email;
+        @BindView(R.id.urlEmail)
+        TextView urlEmail;
 
-        public ViewHolderEmails(View view) {
+        public ViewHolderUrlsEmails(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }

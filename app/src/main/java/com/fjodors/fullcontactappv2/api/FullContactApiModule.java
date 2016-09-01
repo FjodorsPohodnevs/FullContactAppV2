@@ -21,12 +21,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class FullContactApiModule {
-
     public static final String API_BASE_URL = "https://api.fullcontact.com/v2/";
-
     private static String API_KEY = "16e01d26c38b8739";
     private static final String AUTHORIZATION_HEADER = "X-FullContact-APIKey";
-
 
     @Provides
     @Singleton
@@ -45,14 +42,13 @@ public class FullContactApiModule {
         };
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
 //    public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
 //        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 //        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 //        return loggingInterceptor;
 //    }
-
     @Provides
     @Singleton
     public Cache provideOkHttpCache(Application application) {
@@ -97,5 +93,4 @@ public class FullContactApiModule {
     CompanyManager provideFullContactManager(FullContactApiService fullContactApiService) {
         return new CompanyManager(fullContactApiService);
     }
-
 }

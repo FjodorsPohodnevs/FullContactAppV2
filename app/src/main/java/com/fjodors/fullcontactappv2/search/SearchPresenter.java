@@ -1,13 +1,13 @@
 package com.fjodors.fullcontactappv2.search;
 
 import com.fjodors.fullcontactappv2.api.CompanyManager;
+import com.fjodors.fullcontactappv2.company.CompanyDetailHeader;
 
 import javax.inject.Inject;
 
 import rx.Observable;
 
 public class SearchPresenter implements SearchContract.Presenter {
-
     private SearchContract.View searchView;
     private CompanyManager companyManager;
 
@@ -18,21 +18,20 @@ public class SearchPresenter implements SearchContract.Presenter {
     }
 
     @Override
-    public void fetchCompanyData(String companyDomain) {
+    public void fetchCompanyDataForListView(String companyDomain) {
         companyManager.getCompanyData(companyDomain)
                 .doOnTerminate(() -> searchView.hideProgress())
                 .map(company -> Observable.merge(
-                        //Change objects and lists to observable which emit streams, then combine all observables and transform into single list
-                        //We must combine everything because RecyclerAdapter must have single data set, which will be List<Object>companyData
-                        Observable.just(company),//From here we get company logo
-                        Observable.just(company.getOrganization()),//from here company name, founded year and employee count
-                        Observable.from(company.getOrganization().getLinks()),//from here we get urls
-                        Observable.from(company.getOrganization().getContactInfo().getEmailAddresses()),//from here we get emails
-                        Observable.from(company.getSocialProfiles()))//from here we get social networks names and bio text
+                        Observable.just(new CompanyDetailHeader(company.getLogo(),
+                                company.getOrganization().getName(),
+                                company.getOrganization().getApproxEmployees(),
+                                company.getOrganization().getFounded())),
+                        Observable.from(company.getOrganization().getLinks()),
+                        Observable.from(company.getOrganization().getContactInfo().getEmailAddresses()),
+                        Observable.from(company.getSocialProfiles()))
                         .toList()
                 )
                 .subscribe(companyData -> searchView.openCompanyDetail(companyData.toBlocking().single()),
                         e -> searchView.showErrorMsg(e));
-
     }
 }

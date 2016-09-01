@@ -8,7 +8,6 @@ import dagger.Provides;
 
 @Module
 public class SearchModule {
-
     private SearchContract.View searchActivity;
 
     public SearchModule(SearchContract.View searchActivity) {
@@ -26,5 +25,4 @@ public class SearchModule {
     SearchContract.Presenter searchPresenter(CompanyManager companyManager) {
         return new SearchPresenter(searchActivity, companyManager);
     }
-
 }

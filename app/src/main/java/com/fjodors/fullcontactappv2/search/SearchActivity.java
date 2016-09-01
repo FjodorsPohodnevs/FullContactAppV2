@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.fjodors.fullcontactappv2.FullContactApp;
 import com.fjodors.fullcontactappv2.R;
-import com.fjodors.fullcontactappv2.api.responses.Company;
 import com.fjodors.fullcontactappv2.company.CompanyActivity;
 
 import org.parceler.Parcels;
@@ -25,7 +24,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchActivity extends AppCompatActivity implements SearchContract.View {
-
     public static final String COMPANY_KEY = "company";
 
     @BindView(R.id.searchBtn)
@@ -48,7 +46,6 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
                 .getFullContactAppComponent()
                 .plus(new SearchModule(this))
                 .inject(this);
-
     }
 
 //TODO: do this in presenter
@@ -71,8 +68,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 //    }
     @OnClick(R.id.searchBtn)
     public void fetchDomain() {
-        //domain sample: fullcontact.com
-        searchPresenter.fetchCompanyData(companyDomainET.getText().toString());
+        searchPresenter.fetchCompanyDataForListView(companyDomainET.getText().toString());
     }
 
     @Override

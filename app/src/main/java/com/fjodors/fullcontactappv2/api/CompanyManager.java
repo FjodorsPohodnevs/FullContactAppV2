@@ -8,7 +8,6 @@ import rx.schedulers.Schedulers;
 
 
 public class CompanyManager {
-
     private FullContactApiService fullContactApiService;
 
     public CompanyManager(FullContactApiService fullContactApiService) {

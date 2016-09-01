@@ -9,7 +9,6 @@ import dagger.Provides;
 
 @Module
 public class CompanyModule {
-
     private CompanyActivity companyActivity;
 
     public CompanyModule(CompanyActivity companyActivity) {

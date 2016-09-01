@@ -46,17 +46,14 @@ public class Company {
 
     @Parcel
     public static class Category {
-
         @SerializedName("name")
         String name;
         @SerializedName("code")
         String code;
-
     }
 
     @Parcel
     public static class Organization {
-
         @SerializedName("name")
         String name;
         @SerializedName("approxEmployees")
@@ -94,7 +91,6 @@ public class Company {
 
         @Parcel
         public static class ContactInfo {
-
             @SerializedName("emailAddresses")
             public List<EmailAddress> emailAddresses = new ArrayList<EmailAddress>();
             @SerializedName("phoneNumbers")
@@ -108,7 +104,6 @@ public class Company {
 
             @Parcel
             public static class EmailAddress {
-
                 @SerializedName("value")
                 public String value;
                 @SerializedName("label")
@@ -121,17 +116,14 @@ public class Company {
 
             @Parcel
             public static class PhoneNumber {
-
                 @SerializedName("number")
                 public String number;
                 @SerializedName("label")
                 public String label;
-
             }
 
             @Parcel
             public static class Address {
-
                 @SerializedName("addressLine1")
                 String addressLine1;
                 @SerializedName("locality")
@@ -143,21 +135,16 @@ public class Company {
 
                 @Parcel
                 public static class Country {
-
                     @SerializedName("name")
                     String name;
                     @SerializedName("code")
                     String code;
-
                 }
-
             }
-
         }
 
         @Parcel
         public static class Link {
-
             @SerializedName("url")
             String url;
             @SerializedName("label")
@@ -170,19 +157,15 @@ public class Company {
 
         @Parcel
         public static class Image {
-
             @SerializedName("url")
             String url;
             @SerializedName("label")
             String label;
-
         }
-
     }
 
     @Parcel
     public static class SocialProfile {
-
         @SerializedName("typeId")
         String typeId;
         @SerializedName("typeName")
@@ -207,12 +190,10 @@ public class Company {
         public String getTypeName() {
             return typeName;
         }
-
     }
 
     @Parcel
     public static class Traffic {
-
         @SerializedName("topCountryRanking")
         List<TopCountryRanking> topCountryRanking = new ArrayList<TopCountryRanking>();
         @SerializedName("ranking")
@@ -220,24 +201,18 @@ public class Company {
 
         @Parcel
         public static class TopCountryRanking {
-
             @SerializedName("rank")
             long rank;
             @SerializedName("locale")
             String locale;
-
         }
 
         @Parcel
         public static class Ranking {
-
             @SerializedName("rank")
             long rank;
             @SerializedName("locale")
             String locale;
-
         }
-
     }
-
 }

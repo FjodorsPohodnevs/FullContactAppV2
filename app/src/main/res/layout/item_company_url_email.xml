@@ -9,10 +9,10 @@
 
 
     <TextView
-        android:id="@+id/url"
+        android:id="@+id/urlEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:autoLink="web"
+        android:autoLink="email|web"
         android:textSize="15sp"
         tools:text="http://template.url.lv/" />
 

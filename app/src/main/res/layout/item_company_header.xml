@@ -4,28 +4,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="10dp">
+    android:paddingTop="10dp">
+
+    <ImageView
+        android:id="@+id/companyLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        tools:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/companyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/companyLogo"
         android:layout_centerHorizontal="true"
         android:paddingBottom="10dp"
         android:textSize="25sp"
         tools:text="Company Name" />
 
     <View
-        android:layout_below="@+id/companyName"
+        android:id="@+id/companyLogoDivider"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp"
+        android:layout_below="@+id/companyName"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/companyFoundedText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/companyName"
+        android:layout_below="@+id/companyLogoDivider"
         android:text="FOUNDED"
         android:textSize="15sp" />
 
@@ -45,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/companyName"
+        android:layout_below="@+id/companyLogoDivider"
         android:text="EMPLOYEES"
         android:textSize="15sp" />
 
@@ -58,5 +69,6 @@
         android:layout_alignTop="@+id/companyFounded"
         android:textSize="15sp"
         tools:text="30" />
+
 
 </RelativeLayout>

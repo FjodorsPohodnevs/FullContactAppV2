@@ -4,7 +4,6 @@ import com.fjodors.fullcontactappv2.ActivityScope;
 
 import dagger.Subcomponent;
 
-
 @ActivityScope
 @Subcomponent(modules = CompanyModule.class)
 public interface CompanyComponent {

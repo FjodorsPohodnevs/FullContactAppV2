@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.fjodors.fullcontactappv2.FullContactApp;
 import com.fjodors.fullcontactappv2.R;
-import com.fjodors.fullcontactappv2.api.responses.Company;
 import com.fjodors.fullcontactappv2.search.SearchActivity;
 
 import org.parceler.Parcels;
@@ -20,7 +19,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CompanyActivity extends AppCompatActivity {
-
     @BindView(R.id.companyDetailRecyclerView)
     RecyclerView companyDetailRecyclerView;
 

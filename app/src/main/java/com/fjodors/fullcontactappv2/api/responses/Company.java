@@ -44,6 +44,10 @@ public class Company {
         return socialProfiles;
     }
 
+    public long getStatus() {
+        return status;
+    }
+
     @Parcel
     public static class Category {
         @SerializedName("name")

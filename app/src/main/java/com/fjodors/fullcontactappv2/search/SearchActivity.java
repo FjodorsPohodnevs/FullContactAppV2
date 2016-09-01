@@ -57,24 +57,6 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         setAutoCompleteSource(history);
     }
 
-//TODO: do this in presenter
-
-    /**
-     * https://github.com/ReactiveX/RxJava/wiki/The-RxJava-Android-Module
-     */
-//    // MyActivity
-//    private Subscription subscription;
-//
-//    protected void onCreate(Bundle savedInstanceState) {
-//        this.subscription = observable.subscribe(this);
-//    }
-//
-//    ...
-//
-//    protected void onDestroy() {
-//        this.subscription.unsubscribe();
-//        super.onDestroy();
-//    }
     @OnClick(R.id.searchBtn)
     public void fetchDomain() {
         searchPresenter.fetchCompanyDataForListView(companyDomainAC.getText().toString());

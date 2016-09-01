@@ -1,11 +1,13 @@
 package com.fjodors.fullcontactappv2.search;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -15,7 +17,9 @@ import com.fjodors.fullcontactappv2.company.CompanyActivity;
 
 import org.parceler.Parcels;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -29,12 +33,15 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @BindView(R.id.searchBtn)
     Button searchBtn;
     @BindView(R.id.companyDomainET)
-    EditText companyDomainET;
+    AutoCompleteTextView companyDomainAC;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
     @Inject
     SearchContract.Presenter searchPresenter;
+
+    @Inject
+    Set<String> history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
                 .getFullContactAppComponent()
                 .plus(new SearchModule(this))
                 .inject(this);
+
+        setAutoCompleteSource(history);
     }
 
 //TODO: do this in presenter
@@ -68,7 +77,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 //    }
     @OnClick(R.id.searchBtn)
     public void fetchDomain() {
-        searchPresenter.fetchCompanyDataForListView(companyDomainET.getText().toString());
+        searchPresenter.fetchCompanyDataForListView(companyDomainAC.getText().toString());
     }
 
     @Override
@@ -91,5 +100,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         Intent intent = new Intent(this, CompanyActivity.class);
         intent.putExtra(COMPANY_KEY, Parcels.wrap(companyData));
         startActivity(intent);
+    }
+
+    @Override
+    public void setAutoCompleteSource(Set<String> history) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_list_item_1, history.toArray(new String[history.size()]));
+        companyDomainAC.setAdapter(adapter);
     }
 }

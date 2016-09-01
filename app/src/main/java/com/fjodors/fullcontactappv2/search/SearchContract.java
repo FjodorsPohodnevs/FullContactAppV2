@@ -1,6 +1,7 @@
 package com.fjodors.fullcontactappv2.search;
 
 import java.util.List;
+import java.util.Set;
 
 public interface SearchContract {
     interface View {
@@ -11,6 +12,8 @@ public interface SearchContract {
         void hideProgress();
 
         void openCompanyDetail(List<Object> companyData);
+
+        void setAutoCompleteSource(Set<String> history);
     }
 
     interface Presenter {

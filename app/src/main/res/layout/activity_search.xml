@@ -3,21 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="40dp"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".search.SearchActivity">
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/companyDomainET"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Company domain"
-        android:text="fullcontact.com" />
+        android:layout_marginBottom="20dp"
+        android:hint="Company domain" />
 
     <Button
         android:id="@+id/searchBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="Search" />
 
     <ProgressBar
@@ -25,5 +27,6 @@
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible" />
 </LinearLayout>

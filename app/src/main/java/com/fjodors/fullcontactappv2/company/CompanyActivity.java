@@ -12,6 +12,8 @@ import com.fjodors.fullcontactappv2.search.SearchActivity;
 
 import org.parceler.Parcels;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -38,33 +40,16 @@ public class CompanyActivity extends AppCompatActivity {
                 .plus(new CompanyModule(this))
                 .inject(this);
 
-        Company company = Parcels.unwrap(getIntent().getParcelableExtra(SearchActivity.COMPANY_KEY));
-
-//        Observable o1 = Observable.just(company.getOrganization().getLinks());
-//        Observable o2 = Observable.just(company.getOrganization().getContactInfo().getEmailAddresses());
-//        Observable o3 = Observable.just(company.getSocialProfiles());
-//
-//        Observable.zip(
-//                o1,
-//                o2,
-//                o3,
-//                (a, b, c) -> {
-//                    List<Object> list = new ArrayList<>();
-//                    list.addAll(o1.toList());
-//                    list.addAll(o2);
-//                    list.addAll(o3);
-//                    return list;
-//                }
-//        );
-
-
-        initCompanyRecyclerView(company);
+        List<Object> companyData = Parcels.unwrap(getIntent().getParcelableExtra(SearchActivity.COMPANY_KEY));
+        initCompanyRecyclerView(companyData);
     }
 
-    private void initCompanyRecyclerView(Company company) {
+    private void initCompanyRecyclerView(List<Object> companyData) {
         companyDetailRecyclerView.setHasFixedSize(true);
         companyDetailRecyclerView.setLayoutManager(linearLayoutManager);
-        companyRecyclerAdapter.setCompany(company);
+        companyRecyclerAdapter.setCompany(companyData);
         companyDetailRecyclerView.setAdapter(companyRecyclerAdapter);
+        RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST);
+        companyDetailRecyclerView.addItemDecoration(itemDecoration);
     }
 }

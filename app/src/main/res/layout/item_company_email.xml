@@ -7,19 +7,12 @@
     android:paddingBottom="10dp"
     android:paddingTop="10dp">
 
-
     <TextView
-        android:id="@+id/bioSource"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        tools:text="Facebook" />
-
-    <TextView
-        android:id="@+id/bio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        tools:text="This company is very cool and nice, it does these and those things." />
+        android:autoLink="email"
+        tools:text="http://template@template.lv/" />
 
 </LinearLayout>

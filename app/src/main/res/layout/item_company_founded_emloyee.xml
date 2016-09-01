@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:id="@+id/companyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="10dp"
+        android:textSize="25sp"
+        tools:text="Company Name" />
+
+    <View
+        android:layout_below="@+id/companyName"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <TextView
+        android:id="@+id/companyFoundedText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/companyName"
+        android:text="FOUNDED"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/companyFounded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/companyFoundedText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignStart="@+id/companyFoundedText"
+        android:layout_below="@+id/companyFoundedText"
+        android:textSize="15sp"
+        tools:text="2000" />
+
+    <TextView
+        android:id="@+id/companyEmployeesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/companyName"
+        android:text="EMPLOYEES"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/companyEmployees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/companyEmployeesText"
+        android:layout_alignStart="@+id/companyEmployeesText"
+        android:layout_alignTop="@+id/companyFounded"
+        android:textSize="15sp"
+        tools:text="30" />
+
+</RelativeLayout>

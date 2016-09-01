@@ -16,6 +16,8 @@ import com.fjodors.fullcontactappv2.company.CompanyActivity;
 
 import org.parceler.Parcels;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -69,6 +71,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 //    }
     @OnClick(R.id.searchBtn)
     public void fetchDomain() {
+        //domain sample: fullcontact.com
         searchPresenter.fetchCompanyData(companyDomainET.getText().toString());
     }
 
@@ -88,9 +91,9 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void openCompanyDetail(Company company) {
+    public void openCompanyDetail(List<Object> companyData) {
         Intent intent = new Intent(this, CompanyActivity.class);
-        intent.putExtra(COMPANY_KEY, Parcels.wrap(company));
+        intent.putExtra(COMPANY_KEY, Parcels.wrap(companyData));
         startActivity(intent);
     }
 }

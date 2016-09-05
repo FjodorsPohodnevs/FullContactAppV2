@@ -1,4 +1,4 @@
-package com.fjodors.fullcontactappv2.api.responses;
+package com.fjodors.fullcontactappv2.api.response;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -27,6 +27,8 @@ public class Company {
     List<SocialProfile> socialProfiles = new ArrayList<SocialProfile>();
     @SerializedName("traffic")
     Traffic traffic;
+    @SerializedName("message")
+    String message;
 
     public String getLogo() {
         return logo;
@@ -47,6 +49,7 @@ public class Company {
     public long getStatus() {
         return status;
     }
+
 
     @Parcel
     public static class Category {

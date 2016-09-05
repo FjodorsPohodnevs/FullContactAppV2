@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="40dp"
+    android:layout_margin="@dimen/margin_search_layout"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".search.SearchActivity">
@@ -12,21 +12,46 @@
         android:id="@+id/companyDomainET"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="Company domain" />
+        android:layout_marginBottom="@dimen/margin_bottom_search_text_view"
+        android:layout_marginTop="@dimen/margin_top_search_text_view"
+        android:hint="@string/company_domain" />
 
     <Button
         android:id="@+id/searchBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Search" />
+        android:layout_below="@+id/companyDomainET"
+        android:layout_marginBottom="@dimen/margin_bottom_search_button"
+        android:text="@string/search" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@style/Widget.AppCompat.ProgressBar"
+    <TextView
+        android:id="@+id/errorMsgTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/searchBtn"
+        android:layout_alignRight="@+id/searchBtn"
+        android:layout_below="@+id/searchBtn"
+        android:layout_gravity="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp"
         android:visibility="gone"
+        tools:text="Error message"
         tools:visibility="visible" />
-</LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/progressContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+</RelativeLayout>

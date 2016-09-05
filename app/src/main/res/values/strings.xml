@@ -1,3 +1,20 @@
 <resources>
+    <!-- App -->
     <string name="app_name">FullcontactAppV2</string>
+
+    <!-- Search screen -->
+    <string name="search">Search</string>
+
+    <!-- Result screen -->
+    <string name="company_domain">Company domain</string>
+    <string name="founded">FOUNDED</string>
+    <string name="employees">EMPLOYEES</string>
+
+    <!-- ErrorManager -->
+    <string name="error_202">Queued for search. Please retry your query within about 2 minutes</string>
+    <string name="error_404">The domain does not appear to be registered.</string>
+    <string name="error_422">Input domain parameter does not contain a valid domain</string>
+    <string name="error_503">FullContact Service is not available</string>
+    <string name="error_generic">An unexpected error has occurred. Please try again.</string>
+    <string name="error_network">Unable to connect to FullContact. Check your connection and try again.</string>
 </resources>

@@ -42,13 +42,6 @@ public class FullContactApiModule {
         };
     }
 
-    //    @Provides
-//    @Singleton
-//    public HttpLoggingInterceptor provideHttpLoggingInterceptor() {
-//        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-//        return loggingInterceptor;
-//    }
     @Provides
     @Singleton
     public Cache provideOkHttpCache(Application application) {
@@ -60,14 +53,8 @@ public class FullContactApiModule {
     @Singleton
     public OkHttpClient provideOkHttpClient(Interceptor interceptor, Cache cache) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
-        //TODO: place this outside
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         builder.cache(cache)
-                .addInterceptor(interceptor)
-                .addInterceptor(loggingInterceptor);
+                .addInterceptor(interceptor);
         return builder.build();
     }
 

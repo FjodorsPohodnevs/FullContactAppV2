@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:layout_marginBottom="@dimen/margin_height_company_email_url_layout"
+    android:layout_marginLeft="@dimen/margin_left_company_email_url_layout"
+    android:layout_marginRight="@dimen/margin_right_company_email_url_layout"
+    android:layout_marginTop="@dimen/margin_top_company_email_url_layout"
+    android:orientation="vertical">
 
 
     <TextView
@@ -13,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="email|web"
-        android:textSize="15sp"
+        android:textSize="@dimen/text_size_company_email_url"
         tools:text="http://template.url.lv/" />
 
 </LinearLayout>

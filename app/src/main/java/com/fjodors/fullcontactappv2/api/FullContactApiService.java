@@ -1,6 +1,6 @@
 package com.fjodors.fullcontactappv2.api;
 
-import com.fjodors.fullcontactappv2.api.responses.Company;
+import com.fjodors.fullcontactappv2.api.response.Company;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

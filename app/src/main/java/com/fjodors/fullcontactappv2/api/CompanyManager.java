@@ -1,6 +1,6 @@
 package com.fjodors.fullcontactappv2.api;
 
-import com.fjodors.fullcontactappv2.api.responses.Company;
+import com.fjodors.fullcontactappv2.api.response.Company;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

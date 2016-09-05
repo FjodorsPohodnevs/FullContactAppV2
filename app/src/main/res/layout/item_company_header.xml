@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="10dp">
+    android:layout_marginTop="20dp"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/companyLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/width_company_logo"
+        android:layout_height="@dimen/height_company_logo"
         android:layout_centerHorizontal="true"
         tools:src="@mipmap/ic_launcher" />
 
@@ -19,17 +19,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/companyLogo"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="10dp"
-        android:textSize="25sp"
+        android:layout_marginBottom="@dimen/margin_bottom_company_name"
+        android:textSize="@dimen/text_size_company_name"
         tools:text="Company Name" />
 
     <View
         android:id="@+id/companyLogoDivider"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/height_company_logo_divider"
         android:layout_below="@+id/companyName"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_marginBottom="@dimen/margin_bottom_company_logo_divider"
+        android:background="@color/gray" />
 
     <TextView
         android:id="@+id/companyFoundedText"
@@ -37,8 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/companyLogoDivider"
-        android:text="FOUNDED"
-        android:textSize="15sp" />
+        android:layout_marginLeft="@dimen/margin_left_company_founded"
+        android:text="@string/founded"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_company_founded" />
 
     <TextView
         android:id="@+id/companyFounded"
@@ -48,7 +50,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignStart="@+id/companyFoundedText"
         android:layout_below="@+id/companyFoundedText"
-        android:textSize="15sp"
+        android:layout_marginBottom="@dimen/margin_bottom_company_founded"
+        android:layout_marginLeft="@dimen/margin_left_company_founded"
+        android:textSize="@dimen/text_size_company_founded"
         tools:text="2000" />
 
     <TextView
@@ -57,8 +61,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/companyLogoDivider"
-        android:text="EMPLOYEES"
-        android:textSize="15sp" />
+        android:layout_marginRight="@dimen/margin_right_company_employee"
+        android:text="@string/employees"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_company_employee" />
 
     <TextView
         android:id="@+id/companyEmployees"
@@ -67,7 +73,9 @@
         android:layout_alignLeft="@+id/companyEmployeesText"
         android:layout_alignStart="@+id/companyEmployeesText"
         android:layout_alignTop="@+id/companyFounded"
-        android:textSize="15sp"
+        android:layout_marginBottom="@dimen/margin_bottom_company_employee"
+        android:layout_marginRight="@dimen/margin_right_company_employee"
+        android:textSize="@dimen/text_size_company_employee"
         tools:text="30" />
 
 

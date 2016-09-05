@@ -5,10 +5,10 @@ import org.parceler.ParcelConstructor;
 
 @Parcel
 public class CompanyDetailHeader {
-    String logo;
-    String name;
-    long approxEmployees;
-    String founded;
+    private String logo;
+    private String name;
+    private long approxEmployees;
+    private String founded;
 
     @ParcelConstructor
     public CompanyDetailHeader(String logo, String name, long approxEmployees, String founded) {
@@ -20,10 +20,6 @@ public class CompanyDetailHeader {
 
     public String getLogo() {
         return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
     }
 
     public String getName() {
@@ -38,15 +34,7 @@ public class CompanyDetailHeader {
         return approxEmployees;
     }
 
-    public void setApproxEmployees(long approxEmployees) {
-        this.approxEmployees = approxEmployees;
-    }
-
     public String getFounded() {
         return founded;
-    }
-
-    public void setFounded(String founded) {
-        this.founded = founded;
     }
 }
